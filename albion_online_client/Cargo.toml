@@ -1,0 +1,7 @@
+[package]
+name = "albion_online_client"
+version = "0.1.0"
+authors = ["fbrand <fabian@fabianbrand.de>"]
+
+[dependencies]
+rust-ini = "0.10.0"
