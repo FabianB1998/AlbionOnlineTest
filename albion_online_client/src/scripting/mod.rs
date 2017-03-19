@@ -9,7 +9,6 @@ use std::collections::HashMap;
 use self::rhai::{Engine, FnRegister};
 
 
-
 pub struct Scripts{
     loaded_scripts : HashMap<String, String>,
     engine : Engine,
@@ -26,15 +25,25 @@ impl Scripts{
         }
     }
 
+    
     pub fn load_script(&mut self, name : &str, path : &str){
         self.loaded_scripts.insert(name.to_owned(), path.to_owned());
     }
+
     
     pub fn setup(&mut self){
         self.engine.register_fn("print", native_script_functions::print_native as fn(to_print : &mut String) -> ());
-        let paths = fs::read_dir("./scripts").unwrap();
+        let paths = match fs::read_dir("./scripts"){
+            Ok(path) => path,
+            Err(e) => {println!("Failed to open script dir: {}. Creating directory...", e);
+                       match fs::create_dir("./scripts"){
+                           Ok(_) => (),
+                           Err(e) => {println!("Critical error while creating directory {}", e); return;}
+                       };
+                       return;}
+        };
         for file in paths{
-            let file =  file.unwrap();
+            let file = file.unwrap();
             if file.path().extension().unwrap()  == "rhai"{
             println!("Loading {}", file.path().file_name().unwrap().to_str().unwrap());
                 //Unwraping horror, need to fix 
@@ -42,17 +51,16 @@ impl Scripts{
                                  .to_str().unwrap()
                                  , file.path().to_str().unwrap());
             }
-            
         }
     }
 
+    
     pub fn run_all(&mut self){
         for (script_name, script_path) in &self.loaded_scripts{
             match self.engine.eval_file::<()>(script_path){
                 Ok(_) => (),
-                Err(e) => {println!("Failed to execute {} : {}", script_name, e)}
+                Err(e) => {println!("Failed to execute script {} : {}", script_name, e)}
             }
         }
     }
-
 }
