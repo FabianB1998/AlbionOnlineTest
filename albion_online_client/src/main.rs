@@ -5,6 +5,8 @@ mod logger;
 
 use user::Serializable;
 
+//Hey fabian
+
 fn main(){
     let mut t = scripting::Scripts::new();
     t.setup();
