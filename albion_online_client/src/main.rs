@@ -1,9 +1,11 @@
 mod user;
 mod scripting;
+mod webaccess;
 
 fn main(){
     let mut t = scripting::Scripts::new();
-    t.load_script("test".to_string(), "test.rhai".to_string());
+    t.load_script("test", "test.rhai");
     t.setup();
     t.run_all();
+    //webaccess::runServer();
 }
