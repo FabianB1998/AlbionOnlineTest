@@ -1,16 +1,14 @@
 extern crate rhai;
 
+mod native_script_functions;
 
-use std::fmt::Display;
 use std::fs;
 use std::ffi::OsStr;
 use std::collections::HashMap;
 
 use self::rhai::{Engine, FnRegister};
 
-fn print_native<T: Display>(to_print : &mut T) -> (){
-    println!("{}", to_print);
-}
+
 
 pub struct Scripts{
     loaded_scripts : HashMap<String, String>,
@@ -33,7 +31,7 @@ impl Scripts{
     }
     
     pub fn setup(&mut self){
-        self.engine.register_fn("print", print_native as fn(to_print : &mut String) -> ());
+        self.engine.register_fn("print", native_script_functions::print_native as fn(to_print : &mut String) -> ());
         let paths = fs::read_dir("./scripts").unwrap();
         for file in paths{
             let file =  file.unwrap();
