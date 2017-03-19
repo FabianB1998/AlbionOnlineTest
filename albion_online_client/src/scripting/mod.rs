@@ -13,7 +13,7 @@ use self::rhai::{Engine, FnRegister};
 pub struct Scripts{
     loaded_scripts : HashMap<String, String>,
     engine : Engine,
-    current_script : String,
+    
 }
 
 impl Scripts{
@@ -22,7 +22,6 @@ impl Scripts{
         Scripts{
             loaded_scripts : HashMap::new(),
             engine : Engine::new(),
-            current_script : "".to_string(),
         }
     }
 
@@ -36,10 +35,10 @@ impl Scripts{
         self.engine.register_fn("print", native_script_functions::print_native as fn(to_print : &mut String) -> ());
         let paths = match fs::read_dir("./scripts"){
             Ok(path) => path,
-            Err(e) => {logger::log(logger::ErrorLevel::Warning, "Failed to open script folder, trying to create it");
+            Err(_) => {logger::log(logger::ErrorLevel::Warning, "Failed to open script folder, trying to create it");
                        match fs::create_dir("./scripts"){
                            Ok(_) => (),
-                           Err(e) => {logger::log(logger::ErrorLevel::Error, "Critical error while creating directory"); return;}
+                           Err(_) => {logger::log(logger::ErrorLevel::Error, "Critical error while creating directory"); return;}
                        };
                        return;}
         };
