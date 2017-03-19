@@ -5,3 +5,4 @@ authors = ["fbrand <fabian@fabianbrand.de>"]
 
 [dependencies]
 rust-ini = "0.10.0"
+rhai = "0.4.0"
