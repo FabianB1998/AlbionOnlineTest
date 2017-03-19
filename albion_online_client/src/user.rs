@@ -1,13 +1,13 @@
 extern crate ini;
 
 
-struct User {
-    password : String,
-    username : String,
-    selected_character : String,
+pub struct User {
+    pub password : String,
+    pub username : String,
+    pub selected_character : String,
 }
 
-trait Serializable{
+pub trait Serializable{
     fn save_to_file(&self, filename : String);
     fn read_from_file(&self, filename : String);
 }
@@ -19,7 +19,10 @@ impl Serializable for User{
             .set("username", self.username.to_owned())
             .set("password", self.password.to_owned())
             .set("character", self.selected_character.to_owned());
-        conf.write_to_file(filename).unwrap();
+        match conf.write_to_file(filename){
+            Ok(_) => (),
+            Err(er) => println!("{}", er)
+        }
     }
 
     fn read_from_file(&self, filename : String){
