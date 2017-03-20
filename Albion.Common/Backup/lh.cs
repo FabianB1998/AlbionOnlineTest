@@ -1,0 +1,17 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: lh
+// Assembly: Albion.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8E9CFC81-AA34-4410-9004-379A07925CAB
+// Assembly location: C:\Program Files (x86)\AlbionOnline\game\Albion-Online_Data\Managed\Albion.Common.dll
+
+[aci(125)]
+public class lh : i0
+{
+  public byte[] cj;
+  public string ck;
+  public bool cl;
+  public bool cm;
+  public int cn;
+  public int co;
+  public int cp;
+}

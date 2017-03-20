@@ -1,0 +1,14 @@
+﻿// Decompiled with JetBrains decompiler
+// Type: ag6
+// Assembly: Albion.Common, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 8E9CFC81-AA34-4410-9004-379A07925CAB
+// Assembly location: C:\Program Files (x86)\AlbionOnline\game\Albion-Online_Data\Managed\Albion.Common.dll
+
+public enum ag6 : short
+{
+  a = 6600,
+  b = 6601,
+  c = 6602,
+  d = 6603,
+  e = 6604,
+}
