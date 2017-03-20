@@ -2,6 +2,7 @@ mod user;
 mod scripting;
 mod webaccess;
 mod logger;
+mod networking;
 
 use user::Serializable;
 
