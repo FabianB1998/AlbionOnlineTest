@@ -19,5 +19,5 @@ fn main(){
     t.setup();
     t.run_all();
     logger::log(logger::ErrorLevel::Info, "Set up script engine");
-    //webaccess::runServer();
+    webaccess::run_server();
 }

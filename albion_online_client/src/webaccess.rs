@@ -1,5 +1,7 @@
 extern crate tiny_http;
 
+use std::fs::File;
+
 use self::tiny_http::{Server, Response};
 
 
@@ -16,9 +18,17 @@ pub fn run_server(){
         Ok(rq) => rq,
         Err(e) => { println!("error: {}", e); break }
         };
+	
+	println!("{}", request.url());
 
-        let resp = tiny_http::Response::from_string("Hello World");
-
+        let resp = tiny_http::Response::from_file(File::open("index.html").unwrap());
+        
+        if request.url() != "/" {
+            let resp = tiny_http::Response::from_file(File::open(request.url()).unwrap());
+            
+        }
+        
+        
         request.respond(resp);
         
     }
