@@ -21,15 +21,13 @@ pub fn run_server(){
 	
 	println!("{}", request.url());
 
-        let resp = tiny_http::Response::from_file(File::open("index.html").unwrap());
+        let resp = tiny_http::Response::from_file(File::open("web/index.html").unwrap());
         
         if request.url() != "/" {
-            let resp = tiny_http::Response::from_file(File::open(request.url()).unwrap());
-            
+            let path = ["web/", request.url()].join("");
+            let resp = tiny_http::Response::from_file(File::open(path).unwrap());
         }
-        
-        
-        request.respond(resp);
-        
+         
+        request.respond(resp).unwrap()
     }
 }
