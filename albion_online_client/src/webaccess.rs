@@ -24,7 +24,7 @@ pub fn run_server(){
         let resp = tiny_http::Response::from_file(File::open("web/index.html").unwrap());
         
         if request.url() != "/" {
-            let path = ["web/", request.url()].join("");
+            let path = format!("web/{}", request.url());
             let resp = tiny_http::Response::from_file(File::open(path).unwrap());
         }
          
