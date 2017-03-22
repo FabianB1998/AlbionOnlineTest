@@ -41,7 +41,7 @@ pub fn run_server(){
 fn getInfo() -> String {
     let mut myInfo = Info{
         mapName:"Test".to_string(),
-        position:Vector{x:200 ,y:200},
+        position:Vector{x:220 ,y:220},
     };
 
     let mut result = json::encode(&myInfo).unwrap();

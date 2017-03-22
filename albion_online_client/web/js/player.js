@@ -1,3 +1,7 @@
+var mapName;
+var positionX;
+var positionY;
+
 function Player() {
     this.MapName = "none";
     this.PositionX = 0;
@@ -5,12 +9,15 @@ function Player() {
 }
 
 Player.prototype.updateInfo = function(data) {
-    this.MapName = data.mapName;
-    this.PositionX = data.position.x;
-    this.PositionY = data.position.y;
-};
+    mapName = data.mapName;
+    positionX = data.position.x;
+    positionY = data.position.y;
+}
 
 Player.prototype.draw = function() {
+    this.MapName = mapName;
+    this.PositionX = positionX;
+    this.PositionY = positionY;
     
     ellipse(this.PositionX, this.PositionY, 50);
 };
