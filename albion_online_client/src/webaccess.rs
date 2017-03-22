@@ -1,33 +1,15 @@
-extern crate tiny_http;
+extern crate nickel;
 
-use std::fs::File;
+use self::nickel::{Nickel, StaticFilesHandler};
 
-use self::tiny_http::{Server, Response};
+static host : &'static str = "0.0.0.0:8080";
 
 
-#[allow(unused_must_use)]
 pub fn run_server(){
-    let server = match tiny_http::Server::http("0.0.0.0:8080"){
-        Ok(serv) => serv,
-        Err(e) => { println!("error: {}", e);  panic!("Fail");}
-        };
-    
-    loop{
 
-        let request = match server.recv() {
-        Ok(rq) => rq,
-        Err(e) => { println!("error: {}", e); break }
-        };
-	
-	println!("{}", request.url());
+    let mut server = Nickel::new();
 
-        let resp = tiny_http::Response::from_file(File::open("web/index.html").unwrap());
-        
-        if request.url() != "/" {
-            let path = ["web/", request.url()].join("");
-            let resp = tiny_http::Response::from_file(File::open(path).unwrap());
-        }
-         
-        request.respond(resp).unwrap()
-    }
+    server.utilize(StaticFilesHandler::new("web/"));
+
+    server.listen(host);
 }

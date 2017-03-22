@@ -7,3 +7,4 @@ authors = ["fbrand <fabian@fabianbrand.de>"]
 rust-ini = "0.10.0"
 rhai = "0.4.0"
 tiny_http = "0.5.8"
+nickel = "*"
