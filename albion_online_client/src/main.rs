@@ -4,9 +4,10 @@ mod webaccess;
 mod logger;
 mod networking;
 
-use user::Serializable;
+#[macro_use] extern crate nickel;
+extern crate rustc_serialize;
 
-//Hey fabian
+use user::Serializable;
 
 fn main(){
     let mut t = scripting::Scripts::new();
