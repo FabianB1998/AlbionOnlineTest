@@ -18,6 +18,7 @@ Player.prototype.draw = function() {
     this.MapName = mapName;
     this.PositionX = positionX;
     this.PositionY = positionY;
-    
-    ellipse(this.PositionX, this.PositionY, 50);
+
+    fill(255,255,0);
+    ellipse(this.PositionX, this.PositionY, 20);
 };

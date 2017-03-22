@@ -1,11 +1,11 @@
 var player;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(600, 600);
 
   player = new Player();
 
-  setInterval(UpdateTick, 50);
+  setInterval(UpdateTick, 100);
 }
 
 function UpdateTick(){
