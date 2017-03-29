@@ -1,21 +1,18 @@
-var mapName;
 var positionX;
 var positionY;
 
-function Player() {
-    this.MapName = "none";
+function Object(name) {
+    this.Name = name;
     this.PositionX = 0;
     this.PositionY = 0;
 }
 
-Player.prototype.updateInfo = function(data) {
-    mapName = data.mapName;
+Object.prototype.updateInfo = function(data) {
     positionX = data.position.x;
     positionY = data.position.y;
 };
 
-Player.prototype.draw = function() {
-    this.MapName = mapName;
+Object.prototype.draw = function() {
     this.PositionX = positionX;
     this.PositionY = positionY;
 
